@@ -20,7 +20,7 @@ function appendNumber(number) {
   } else if (currentOperand.includes(".") && number === ".") {
     return;
   } else {
-    currentOperand = currentOperand.toString() + number.toString();
+    currentOperand += number.toString();
   }
   updateDisplay();
 }
@@ -94,7 +94,7 @@ function calculate() {
 
 function factorial(n) {
   if (n === 0 || n === 1) return 1;
-  for (var i = n - 1; i >= 1; i--) {
+  for (let i = n - 1; i >= 1; i--) {
     n *= i;
   }
   return n;
@@ -111,6 +111,28 @@ function clearDisplay() {
   updateDisplay();
 }
 
-document.getElementById("theme-switcher").addEventListener("change", () => {
-  document.body.classList.toggle("dark-theme");
+document.addEventListener("keydown", (event) => {
+  const key = event.key;
+  const code = event.code;
+
+  if (isFinite(key) || key === "." || key === "π") {
+    appendNumber(key);
+  } else if (key === "Escape") {
+    clearDisplay();
+  } else if (key === "Enter" || code === "NumpadEnter") {
+    calculate();
+  } else if (key === "+" || code === "NumpadAdd") {
+    chooseOperation("+");
+  } else if (key === "-" || code === "NumpadSubtract") {
+    chooseOperation("-");
+  } else if (key === "*" || code === "NumpadMultiply") {
+    chooseOperation("*");
+  } else if (key === "/" || code === "NumpadDivide") {
+    chooseOperation("/");
+  }
+});
+
+document.getElementById("theme-switcher").addEventListener("change", function () {
+  document.body.classList.toggle("dark-theme", this.checked);
+  document.body.classList.toggle("light-theme", !this.checked);
 });
