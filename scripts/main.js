@@ -2,11 +2,24 @@ let currentOperand = "";
 let previousOperand = "";
 let operation = null;
 
+function handleInput(input) {
+  if (isFinite(input) || input === "." || input === "π") {
+    appendNumber(input);
+  } else if (input === "C") {
+    clearDisplay();
+  } else if (input === "=") {
+    calculate();
+  } else {
+    chooseOperation(input);
+  }
+}
+
 function appendNumber(number) {
   if (number === "π") {
     currentOperand = Math.PI.toString();
-  } else if (currentOperand.includes(".") && number === ".") return;
-  else {
+  } else if (currentOperand.includes(".") && number === ".") {
+    return;
+  } else {
     currentOperand = currentOperand.toString() + number.toString();
   }
   updateDisplay();
@@ -76,6 +89,7 @@ function calculate() {
   currentOperand = computation;
   operation = null;
   previousOperand = "";
+  updateDisplay();
 }
 
 function factorial(n) {
@@ -87,5 +101,16 @@ function factorial(n) {
 }
 
 function updateDisplay() {
-  // update your display
+  document.getElementById("display").value = currentOperand;
 }
+
+function clearDisplay() {
+  currentOperand = "";
+  previousOperand = "";
+  operation = null;
+  updateDisplay();
+}
+
+document.getElementById("theme-switcher").addEventListener("change", () => {
+  document.body.classList.toggle("dark-theme");
+});
