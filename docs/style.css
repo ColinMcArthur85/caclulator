@@ -147,3 +147,38 @@ button.big {
 #theme-switcher:checked + label::after {
   transform: translateX(26px);
 }
+
+#color-picker-container {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+#color-picker {
+  display: inline-block;
+  vertical-align: middle;
+}
+#color-picker + label {
+  margin-left: 10px;
+}
+
+#button-color-picker-container {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+#button-color-picker {
+  display: inline-block;
+  vertical-align: middle;
+}
+#button-color-picker + label {
+  margin-left: 10px;
+}
+
+@media (max-width: 600px) {
+  #calculator {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+}

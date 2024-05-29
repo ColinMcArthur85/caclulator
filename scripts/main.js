@@ -136,3 +136,14 @@ document.getElementById("theme-switcher").addEventListener("change", function ()
   document.body.classList.toggle("dark-theme", this.checked);
   document.body.classList.toggle("light-theme", !this.checked);
 });
+
+document.getElementById("color-picker").addEventListener("input", function () {
+  document.getElementById("calculator").style.backgroundColor = this.value;
+});
+
+document.getElementById("button-color-picker").addEventListener("input", function () {
+  let buttons = document.querySelectorAll(".buttons button");
+  buttons.forEach((button) => {
+    button.style.backgroundColor = this.value;
+  });
+});
