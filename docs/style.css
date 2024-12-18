@@ -176,9 +176,38 @@ button.big {
   margin-left: 10px;
 }
 
-@media (max-width: 600px) {
-  #calculator {
-    margin-left: 16px;
-    margin-right: 16px;
-  }
+#history-display {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #1a1a1a;
+  color: #fff;
+  border-radius: 10px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+button.memory {
+  background-color: #4d4d4d;
+  color: #fff;
+}
+
+button.percentage {
+  background-color: #4d4d4d;
+  color: #fff;
+}
+
+button.backspace {
+  background-color: #4d4d4d;
+  color: #fff;
+}
+
+#settings-menu {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }

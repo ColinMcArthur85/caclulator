@@ -42,7 +42,14 @@
         <button onclick="chooseOperation('!')">!</button>
         <button onclick="chooseOperation('^')">^</button>
         <button onclick="appendNumber('π')">π</button>
+        <button onclick="backspace()">←</button>
+        <button onclick="percentage()">%</button>
+        <button onclick="memoryAdd()">M+</button>
+        <button onclick="memorySubtract()">M-</button>
+        <button onclick="memoryRecall()">MR</button>
+        <button onclick="memoryClear()">MC</button>
       </div>
+      <div id="history-display"></div>
     </div>
     <div id="color-picker-container">
       <input type="color" id="color-picker" />
@@ -51,6 +58,15 @@
     <div id="button-color-picker-container">
       <input type="color" id="button-color-picker" />
       <label for="button-color-picker">Choose a color for the buttons</label>
+    </div>
+    <div id="settings-menu">
+      <h3>Settings</h3>
+      <label for="theme-switcher">Dark Theme</label>
+      <input type="checkbox" id="theme-switcher" />
+      <label for="color-picker">Background Color</label>
+      <input type="color" id="color-picker" />
+      <label for="button-color-picker">Button Color</label>
+      <input type="color" id="button-color-picker" />
     </div>
     <script src="./scripts/main.js"></script>
   </body>

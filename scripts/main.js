@@ -1,6 +1,8 @@
 let currentOperand = "";
 let previousOperand = "";
 let operation = null;
+let history = [];
+let memory = 0;
 
 function handleInput(input) {
   if (isFinite(input) || input === "." || input === "π") {
@@ -9,6 +11,18 @@ function handleInput(input) {
     clearDisplay();
   } else if (input === "=") {
     calculate();
+  } else if (input === "←") {
+    backspace();
+  } else if (input === "%") {
+    percentage();
+  } else if (input === "M+") {
+    memoryAdd();
+  } else if (input === "M-") {
+    memorySubtract();
+  } else if (input === "MR") {
+    memoryRecall();
+  } else if (input === "MC") {
+    memoryClear();
   } else {
     chooseOperation(input);
   }
@@ -90,6 +104,7 @@ function calculate() {
   operation = null;
   previousOperand = "";
   updateDisplay();
+  addToHistory(`${prev} ${operation} ${current} = ${computation}`);
 }
 
 function factorial(n) {
@@ -111,6 +126,43 @@ function clearDisplay() {
   updateDisplay();
 }
 
+function backspace() {
+  currentOperand = currentOperand.slice(0, -1);
+  updateDisplay();
+}
+
+function percentage() {
+  currentOperand = (parseFloat(currentOperand) / 100).toString();
+  updateDisplay();
+}
+
+function memoryAdd() {
+  memory += parseFloat(currentOperand);
+}
+
+function memorySubtract() {
+  memory -= parseFloat(currentOperand);
+}
+
+function memoryRecall() {
+  currentOperand = memory.toString();
+  updateDisplay();
+}
+
+function memoryClear() {
+  memory = 0;
+}
+
+function addToHistory(entry) {
+  history.push(entry);
+  updateHistoryDisplay();
+}
+
+function updateHistoryDisplay() {
+  const historyDisplay = document.getElementById("history-display");
+  historyDisplay.innerHTML = history.join("<br>");
+}
+
 document.addEventListener("keydown", (event) => {
   const key = event.key;
   const code = event.code;
@@ -129,6 +181,18 @@ document.addEventListener("keydown", (event) => {
     chooseOperation("*");
   } else if (key === "/" || code === "NumpadDivide") {
     chooseOperation("/");
+  } else if (key === "Backspace") {
+    backspace();
+  } else if (key === "%") {
+    percentage();
+  } else if (key === "M+") {
+    memoryAdd();
+  } else if (key === "M-") {
+    memorySubtract();
+  } else if (key === "MR") {
+    memoryRecall();
+  } else if (key === "MC") {
+    memoryClear();
   }
 });
 
